@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#152b4a">
+<title>RUMAH KARYA | Pesona Edu</title>
+
+<style>
+:root{
+  --navy:#152b4a;
+  --blue:#244a73;
+  --gold:#e7b95f;
+  --cream:#f6f5f0;
+  --ink:#253348;
+  --muted:#758093;
+  --line:#e5e9ef;
+  --white:#ffffff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.topbar{
+  background:var(--navy);
+  color:white;
+  padding:15px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:45px;height:45px;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#ffe6a0,#c18a35);
+  color:var(--navy);font-size:25px;font-weight:bold;
+}
+.brand h2{font-size:17px;letter-spacing:2px;margin:0}
+.brand small{color:#d4dfed}
+button{
+  border:0;border-radius:10px;padding:11px 15px;font-weight:bold
+}
+.gold{background:var(--gold);color:var(--navy)}
+.dark{background:var(--navy);color:white}
+.light{background:white;color:var(--navy);border:1px solid var(--line)}
+.danger{background:#fff0ef;color:#a32929}
+.wrap{max-width:1200px;margin:auto;padding:24px 18px 45px}
+.hero{
+  background:linear-gradient(120deg,#132641,#244d76);
+  color:white;padding:45px 35px;border-radius:24px;
+  position:relative;overflow:hidden;
+}
+.hero:after{
+  content:"✦";position:absolute;right:30px;top:-65px;
+  font-size:240px;color:#ffffff0b;
+}
+.eyebrow{
+  color:#f5d18b;letter-spacing:2px;font-size:12px;
+  font-weight:bold;text-transform:uppercase
+}
+.hero h1{font-size:clamp(32px,5vw,54px);margin:15px 0;line-height:1.1}
+.hero p{line-height:1.8;max-width:680px;color:#e1e9f2}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.stat{padding:13px 17px;background:#ffffff12;border-radius:12px}
+.stat b{font-size:22px;display:block}
+.stat small{color:#e0e8f1}
+.heading{
+  display:flex;justify-content:space-between;align-items:end;
+  gap:15px;flex-wrap:wrap;margin:32px 0 17px
+}
+.heading h2{color:var(--navy);margin:0}
+.heading p{color:var(--muted);font-size:14px}
+.search{
+  padding:12px;border:1px solid #d9e0e8;border-radius:11px;
+  background:white;width:min(100%,330px)
+}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{
+  background:white;border:1px solid var(--line);
+  border-radius:17px;padding:19px;
+  box-shadow:0 8px 25px #12294608;
+  display:flex;flex-direction:column;min-height:210px
+}
+.cardtop{display:flex;gap:12px;align-items:start}
+.schoolicon{
+  width:47px;height:47px;border-radius:13px;
+  background:#edf2f8;display:grid;place-items:center;
+  font-size:24px;flex-shrink:0
+}
+.card h3{font-size:16px;line-height:1.5;margin:0 0 5px}
+.muted{color:var(--muted);font-size:13px;line-height:1.7}
+.tag{
+  background:#fbf2dc;color:#866222;border-radius:20px;
+  padding:6px 9px;font-size:10px;font-weight:bold;
+  align-self:flex-start;margin:14px 0
+}
+.cardbottom{display:flex;gap:8px;margin-top:auto}
+.cardbottom button{flex:1;font-size:12px;padding:10px 7px}
+.panel{
+  background:white;border:1px solid var(--line);
+  border-radius:19px;padding:23px;margin-top:24px
+}
+.panel h2,.panel h3{color:var(--navy)}
+.panel p{line-height:1.7;color:var(--muted)}
+.hidden{display:none!important}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
+.schoolhead{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.schoolhead .schoolicon{width:60px;height:60px;font-size:30px}
+.schoolhead h2{margin:0;color:var(--navy)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}
+.tab{background:#f1f3f7;color:#43536a}
+.tab.active{background:var(--navy);color:white}
+.field{display:flex;flex-direction:column;gap:7px;margin:13px 0}
+.field label{font-size:13px;font-weight:bold}
+.field input,.field textarea,.field select{
+  padding:12px;border:1px solid #d9e0e8;
+  border-radius:10px;background:white;width:100%
+}
+.field textarea{min-height:100px;resize:vertical}
+.hint{font-size:12px;color:var(--muted);line-height:1.6}
+.teacher{
+  display:flex;gap:18px;align-items:start;
+  background:#f7f9fb;padding:17px;border-radius:15px;margin-top:15px
+}
+.teacher img,.teacherplaceholder{
+  width:115px;height:140px;object-fit:cover;
+  border-radius:12px;background:#e4eaf1;flex-shrink:0
+}
+.teacherplaceholder{display:grid;place-items:center;font-size:40px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.galleryitem{border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.galleryitem img{width:100%;height:175px;object-fit:cover;display:block}
+.gallerycaption{padding:12px}
+.gallerycaption b{font-size:14px}
+.report{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;border:1px solid var(--line);
+  padding:14px;border-radius:12px;margin:10px 0
+}
+.empty{
+  border:1px dashed #cbd4df;border-radius:13px;
+  padding:27px;text-align:center;color:var(--muted);line-height:1.8
+}
+.notice{
+  background:#fff7e5;border:1px solid #f0dfb6;
+  padding:13px;border-radius:11px;font-size:12px;line-height:1.7;
+  color:#795a20;margin-top:16px
+}
+.adminbox{background:#f7f9fb;padding:16px;border-radius:13px}
+.footer{text-align:center;color:var(--muted);font-size:12px;line-height:1.8;margin-top:35px}
+.modalbg{
+  position:fixed;inset:0;background:#0b192bcc;z-index:10;
+  display:grid;place-items:center;padding:15px
+}
+.modal{
+  background:white;padding:24px;border-radius:18px;
+  width:min(100%,480px);max-height:92vh;overflow:auto
+}
+.modal h2{color:var(--navy);margin-top:0}
+.modalactions{display:flex;justify-content:end;gap:9px;flex-wrap:wrap;margin-top:18px}
+.toast{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  background:var(--navy);color:white;padding:13px 17px;
+  border-radius:12px;z-index:20;max-width:90%;font-size:13px
+}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:550px){
+  .grid,.gallery{grid-template-columns:1fr}
+  .hero{padding:29px 22px}
+  .wrap{padding:15px 12px}
+  .teacher{flex-direction:column}
+  .teacher img,.teacherplaceholder{width:100%;height:200px}
+  .report{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">R</div>
+    <div>
+      <h2>RUMAH KARYA</h2>
+      <small>Portal Sekolah Pesona Edu</small>
+    </div>
+  </div>
+  <div>
+    <button class="light" onclick="home()">⌂ Beranda</button>
+    <button class="gold" onclick="login()">Masuk</button>
+  </div>
+</header>
+
+<main class="wrap">
+<section id="homePage">
+  <div class="hero">
+    <div class="eyebrow">Pesona Edu · Ruang Kolaborasi</div>
+    <h1>Setiap Karya<br>Punya Cerita.</h1>
+    <p>
+      Rumah Karya menjadi ruang bersama bagi sekolah untuk berbagi
+      hasil karya peserta didik, dokumentasi pembelajaran, profil guru,
+      serta laporan tahunan secara terstruktur dan inspiratif.
+    </p>
+    <button class="gold" onclick="document.getElementById('schoolSection').scrollIntoView({behavior:'smooth'})">
+      Jelajahi Sekolah ↓
+    </button>
+    <div class="stats">
+      <div class="stat"><b>20</b><small>Sekolah anggota</small></div>
+      <div class="stat"><b id="count">0</b><small>Unggahan di browser ini</small></div>
+      <div class="stat"><b>1</b><small>Rumah kolaborasi</small></div>
+    </div>
+  </div>
+
+  <div class="heading" id="schoolSection">
+    <div>
+      <h2>Sekolah Pesona Edu</h2>
+      <p>Pilih sekolah untuk melihat profil guru, laporan, dan karya.</p>
+    </div>
+    <input class="search" id="search" placeholder="Cari sekolah..." oninput="renderSchools()">
+  </div>
+  <div class="grid" id="schoolGrid"></div>
+
+  <div class="panel">
+    <h2>Tentang Rumah Karya</h2>
+    <p>
+      Rumah Karya mendukung budaya berbagi praktik baik, dokumentasi
+      kegiatan belajar, serta apresiasi terhadap kreativitas peserta didik
+      dan dedikasi para pendidik.
+    </p>
+    <div class="notice">
+      <b>Penting:</b> versi ini menyimpan data di browser/perangkat.
+      Agar semua sekolah dapat berbagi data secara online, diperlukan
+      database dan penyimpanan cloud. Jangan publikasikan foto anak
+      tanpa izin orang tua atau wali.
+    </div>
+  </div>
+</section>
+
+<section id="schoolPage" class="hidden">
+  <button class="light" onclick="home()">← Kembali ke daftar sekolah</button>
+  <div class="panel">
+    <div class="schoolhead">
+      <div class="schoolicon">🏫</div>
+      <div>
+        <div class="eyebrow" style="color:#a8792e">PORTAL SEKOLAH</div>
+        <h2 id="schoolTitle">Nama Sekolah</h2>
+        <div class="muted" id="schoolDesc"></div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <button class="dark" onclick="uploadForm('work')">＋ Upload Hasil Karya</button>
+      <button class="light" onclick="uploadForm('report')">＋ Upload Laporan</button>
+      <button class="light" onclick="teacherForm()">✎ Profil Guru</button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="tab('profile',this)">Profil Guru</button>
+      <button class="tab" onclick="tab('gallery',this)">Galeri Karya</button>
+      <button class="tab" onclick="tab('reports',this)">Laporan Tahunan</button>
+      <button class="tab" onclick="tab('admin',this)">Panel Admin</button>
+    </div>
+
+    <div id="profileTab"></div>
+    <div id="galleryTab" class="hidden"></div>
+    <div id="reportsTab" class="hidden"></div>
+    <div id="adminTab" class="hidden"></div>
+  </div>
+</section>
+
+<div class="footer">
+  © <span id="year"></span> RUMAH KARYA · Pesona Edu<br>
+  Ruang dokumentasi, kolaborasi, dan apresiasi pendidikan.
+</div>
+</main>
+
+<div id="modalRoot"></div>
+<div id="toast" class="toast hidden"></div>
+
+<script>
+const ADMIN_WA = "62895327715278";
+const LINK_LAPORAN =
+ "https://bit.ly/LAPSEK_1_SMP_CIKAL_HARAPAN_II_2025-2026";
+
+const names = [
+ "TK Tarakanita Citra Raya",
+ "SMP Cikal Harapan II",
+ "Sekolah Anggota 03",
+ "Sekolah Anggota 04",
+ "Sekolah Anggota 05",
+ "Sekolah Anggota 06",
+ "Sekolah Anggota 07",
+ "Sekolah Anggota 08",
+ "Sekolah Anggota 09",
+ "Sekolah Anggota 10",
+ "Sekolah Anggota 11",
+ "Sekolah Anggota 12",
+ "Sekolah Anggota 13",
+ "Sekolah Anggota 14",
+ "Sekolah Anggota 15",
+ "Sekolah Anggota 16",
+ "Sekolah Anggota 17",
+ "Sekolah Anggota 18",
+ "Sekolah Anggota 19",
+ "Sekolah Anggota 20"
+];
+
+let schools = names.map((name,i)=>({
+ id:"s"+(i+1),
+ name:name,
+ desc:i===0?"Taman Kanak-Kanak · Citra Raya":
+      i===1?"Laporan sekolah tahun ajaran 2025–2026":
+      "Sekolah anggota Pesona Edu",
+ link:i===1?LINK_LAPORAN:""
+}));
+
+let current = "s1";
+let role = "guest";
+let user = "";
+let db = {teachers:{},works:[],reports:[]};
+
+try{
+ const saved = localStorage.getItem("rumahKaryaData");
+ if(saved) db = Object.assign(db,JSON.parse(saved));
+ const savedSchools = localStorage.getItem("rumahKaryaSchools");
+ if(savedSchools){
+   const parsed = JSON.parse(savedSchools);
+   if(parsed.length===20) schools=parsed;
+ }
+}catch(e){}
+
+function escapeHTML(s=""){
+ return String(s).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+function save(){
+ try{
+  localStorage.setItem("rumahKaryaData",JSON.stringify(db));
+ }catch(e){
+  notify("Penyimpanan penuh. Gunakan file yang lebih kecil.");
+ }
+ document.getElementById("count").textContent=db.works.length+db.reports.length;
+}
+function notify(message){
+ const el=document.getElementById("toast");
+ el.textContent=message;
+ el.classList.remove("hidden");
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>el.classList.add("hidden"),3500);
+}
+function renderSchools(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const list=schools.filter(s=>s.name.toLowerCase().includes(q));
+ document.getElementById("schoolGrid").innerHTML=list.map(s=>`
+  <article class="card">
+   <div class="cardtop">
+    <div class="schoolicon">🏫</div>
+    <div><h3>${escapeHTML(s.name)}</h3>
+    <div class="muted">${escapeHTML(s.desc)}</div></div>
+   </div>
+   <span class="tag">ANGGOTA PESONA EDU</span>
+   <div class="cardbottom">
+    <button class="dark" onclick="openSchool('${s.id}')">Buka Portal ↗</button>
+    ${s.link?`<button class="light" onclick="window.open('${s.link}','_blank','noopener')">Laporan</button>`:""}
+   </div>
+  </article>`).join("") || '<div class="empty">Sekolah tidak ditemukan.</div>';
+}
+function home(){
+ document.getElementById("homePage").classList.remove("hidden");
+ document.getElementById("schoolPage").classList.add("hidden");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function openSchool(id){
+ current=id;
+ const s=schools.find(x=>x.id===id);
+ document.getElementById("homePage").classList.add("hidden");
+ document.getElementById("schoolPage").classList.remove("hidden");
+ document.getElementById("schoolTitle").textContent=s.name;
+ document.getElementById("schoolDesc").textContent=s.desc;
+ tab("profile",document.querySelector(".tab"));
+ renderTabs();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function tab(which,button){
+ ["profile","gallery","reports","admin"].forEach(k=>{
+  document.getElementById(k+"Tab").classList.toggle("hidden",k!==which);
+ });
+ document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+ if(button) button.classList.add("active");
+ renderTabs();
+}
+function renderTabs(){
+ const t=db.teachers[current];
+ document.getElementById("profileTab").innerHTML=t?`
+ <div class="teacher">
+  ${t.photo?`<img src="${t.photo}" alt="Foto guru">`:
+   '<div class="teacherplaceholder">👩‍🏫</div>'}
+  <div>
+   <span class="tag">PROFIL PENDIDIK</span>
+   <h3>${escapeHTML(t.name)}</h3>
+   <p><b>${escapeHTML(t.job||"Guru")}</b></p>
+   <p class="muted">Pengalaman mengajar: ${escapeHTML(t.exp||"-")}</p>
+   <p>${escapeHTML(t.bio||"")}</p>
+   <button class="light" onclick="teacherForm()">Edit Profil</button>
+  </div>
+ </div>`:
+ '<div class="empty">Profil guru belum diisi.<br><button class="dark" onclick="teacherForm()">＋ Tambah Profil Guru</button></div>';
+
+ const works=db.works.filter(w=>w.school===current&&w.published!==false);
+ document.getElementById("galleryTab").innerHTML=works.length?
+ '<div class="gallery">'+works.map(w=>`
+  <article class="galleryitem">
+   ${w.type==="image"?`<img src="${w.url}" alt="${escapeHTML(w.title)}">`:
+    '<div class="empty">📄 Berkas</div>'}
+   <div class="gallerycaption"><b>${escapeHTML(w.title)}</b>
+   <div class="muted">${escapeHTML(w.teacher)} · ${escapeHTML(w.date)}</div>
+   <p class="muted">${escapeHTML(w.desc||"")}</p></div>
+  </article>`).join("")+'</div>':
+ '<div class="empty">Belum ada hasil karya yang dipublikasikan.</div>';
+
+ const s=schools.find(x=>x.id===current);
+ const reports=db.reports.filter(r=>r.school===current&&r.published!==false);
+ document.getElementById("reportsTab").innerHTML=
+ (s.link?`<div class="report"><div><b>Laporan Sekolah 2025–2026</b><div class="muted">SMP Cikal Harapan II</div></div><a href="${s.link}" target="_blank" rel="noopener"><button class="dark">Buka Laporan ↗</button></a></div>`:"")+
+ (reports.length?reports.map(r=>`
+ <div class="report"><div><b>${escapeHTML(r.title)}</b>
+ <div class="muted">${escapeHTML(r.teacher)} · ${escapeHTML(r.date)}</div></div>
+ <a href="${r.url}" target="_blank" rel="noopener"><button class="dark">Buka Berkas</button></a></div>`).join(""):'<div class="empty">Belum ada laporan tahunan.</div>');
+
+ const items=[...db.works.map((x,i)=>({...x,kind:"Karya",index:i})),
+              ...db.reports.map((x,i)=>({...x,kind:"Laporan",index:i}))]
+              .filter(x=>x.school===current);
+ document.getElementById("adminTab").innerHTML=`
+ <div class="adminbox">
+  <h3>Panel pengelolaan</h3>
+  <p class="muted">Status saat ini: ${escapeHTML(role)}${user?" · "+escapeHTML(user):""}</p>
+  ${role==="admin"?'<button class="dark" onclick="renameSchools()">Kelola nama sekolah</button>':
+  '<button class="light" onclick="login()">Masuk Admin</button>'}
+ </div>`+
+ (role==="admin"?items.map(x=>`
+ <div class="report"><div><b>${escapeHTML(x.title)}</b>
+ <div class="muted">${x.published===false?"Menunggu tinjauan":"Dipublikasikan"}</div></div>
+ <div><button class="light" onclick="publish('${x.kind}',${x.index})">${x.published===false?"Publikasikan":"Sembunyikan"}</button>
+ <button class="danger" onclick="removeItem('${x.kind}',${x.index})">Hapus</button></div></div>`).join(""):"")+
+ '<div class="notice">Mode admin ini hanya demo browser, bukan login aman untuk website publik.</div>';
+}
+function modal(content){
+ document.getElementById("modalRoot").innerHTML=`
+ <div class="modalbg" onclick="if(event.target===this)closeModal()">
+  <div class="modal">${content}</div>
+ </div>`;
+}
+function closeModal(){document.getElementById("modalRoot").innerHTML="";}
+function login(){
+ modal(`<h2>Masuk Rumah Karya</h2>
+ <p class="muted">Mode demo. Login ini belum aman untuk website publik.</p>
+ <div class="field"><label>Nama</label><input id="loginName" placeholder="Nama pengguna"></div>
+ <div class="field"><label>Peran</label><select id="loginRole"><option value="teacher">Guru</option><option value="admin">Admin Pesona Edu</option><option value="guest">Pengunjung</option></select></div>
+ <div class="field"><label>Kode demo admin</label><input id="loginPin" type="password" placeholder="Kode admin demo"></div>
+ <div class="modalactions"><button class="light" onclick="closeModal()">Batal</button><button class="dark" onclick="doLogin()">Lanjut</button></div>`);
+}
+function doLogin(){
+ const selected=document.getElementById("loginRole").value;
+ const pin=document.getElementById("loginPin").value;
+ if(selected==="admin"&&pin!=="PE2026"){
+  notify("Kode demo admin: PE2026");return;
+ }
+ role=selected;user=document.getElementById("loginName").value.trim();
+ closeModal();renderTabs();notify("Mode "+role+" aktif pada browser ini.");
+}
+function teacherForm(){
+ if(role==="guest"){login();notify("Masuk sebagai guru atau admin terlebih dahulu.");return;}
+ const t=db.teachers[current]||{name:user,job:"Guru TK",exp:"",bio:"",photo:""};
+ modal(`<h2>Profil Guru</h2>
+ <div class="field"><label>Nama lengkap</label><input id="tName" value="${escapeHTML(t.name)}"></div>
+ <div class="field"><label>Jabatan</label><input id="tJob" value="${escapeHTML(t.job)}" placeholder="Contoh: Guru TK"></div>
+ <div class="field"><label>Pengalaman mengajar</label><input id="tExp" value="${escapeHTML(t.exp)}" placeholder="Contoh: 2 tahun"></div>
+ <div class="field"><label>Deskripsi profesional</label><textarea id="tBio">${escapeHTML(t.bio)}</textarea></div>
+ <div class="field"><label>Foto guru</label><input type="file" id="tPhoto" accept="image/*"><span class="hint">Disarankan gambar JPG/PNG di bawah 700 KB.</span></div>
+ <div class="modalactions"><button class="light" onclick="closeModal()">Batal</button><button class="dark" onclick="saveTeacher()">Simpan Profil</button></div>`);
+}
+function readFile(file){
+ return new Promise((resolve,reject)=>{
+  if(!file){resolve("");return;}
+  if(file.size>900*1024){reject(Error("Ukuran maksimal 900 KB untuk demo browser."));return;}
+  const reader=new FileReader();
+  reader.onload=()=>resolve(reader.result);
+  reader.onerror=()=>reject(Error("Gagal membaca berkas."));
+  reader.readAsDataURL(file);
+ });
+}
+async function saveTeacher(){
+ try{
+  const old=db.teachers[current]||{};
+  const file=document.getElementById("tPhoto").files[0];
+  const photo=file?await readFile(file):(old.photo||"");
+  const name=document.getElementById("tName").value.trim();
+  if(!name){notify("Nama guru wajib diisi.");return;}
+  db.teachers[current]={
+   name,job:document.getElementById("tJob").value,
+   exp:document.getElementById("tExp").value,
+   bio:document.getElementById("tBio").value,photo
+  };
+  save();closeModal();renderTabs();notify("Profil tersimpan di browser ini.");
+ }catch(e){notify(e.message);}
+}
+function uploadForm(kind){
+ if(role==="guest"){login();notify("Masuk sebagai guru atau admin sebelum upload.");return;}
+ const isWork=kind==="work";
+ modal(`<h2>${isWork?"Upload Hasil Karya":"Upload Laporan Tahunan"}</h2>
+ <p class="muted">Sekolah: ${escapeHTML(schools.find(s=>s.id===current).name)}</p>
+ <div class="field"><label>Judul</label><input id="uTitle" placeholder="${isWork?"Contoh: Kolase warna":"Contoh: Laporan Tahunan 2025–2026"}"></div>
+ <div class="field"><label>Nama guru</label><input id="uTeacher" value="${escapeHTML(user||db.teachers[current]?.name||"")}"></div>
+ <div class="field"><label>Keterangan</label><textarea id="uDesc" placeholder="Tuliskan deskripsi singkat"></textarea></div>
+ <div class="field"><label>${isWork?"Foto karya":"File PDF laporan atau gambar"}</label><input id="uFile" type="file" accept="${isWork?"image/*":".pdf,image/*"}"><span class="hint">Demo: maksimal 900 KB. File disimpan dalam browser ini.</span></div>
+ <div class="modalactions"><button class="light" onclick="closeModal()">Batal</button><button class="dark" onclick="saveUpload('${kind}')">Simpan & Notifikasi</button></div>`);
+}
+async function saveUpload(kind){
+ const title=document.getElementById("uTitle").value.trim();
+ const file=document.getElementById("uFile").files[0];
+ if(!title||!file){notify("Judul dan berkas wajib diisi.");return;}
+ try{
+  const url=await readFile(file);
+  const isImage=file.type.startsWith("image/");
+  if(!isImage&&file.type!=="application/pdf"){
+   notify("Gunakan foto atau file PDF.");return;
+  }
+  const item={
+   id:Date.now(),school:current,title,
+   teacher:document.getElementById("uTeacher").value.trim()||"Guru",
+   desc:document.getElementById("uDesc").value.trim(),
+   date:new Date().toLocaleDateString("id-ID"),
+   url,type:isImage?"image":"file",
+   published:role==="admin"
+  };
+  if(kind==="work")db.works.unshift(item);else db.reports.unshift(item);
+  save();closeModal();renderTabs();
+  const school=schools.find(s=>s.id===current).name;
+  const msg=`Halo Admin Pesona Edu,%0Aada unggahan baru di Rumah Karya.%0A%0ASekolah: ${encodeURIComponent(school)}%0AGuru: ${encodeURIComponent(item.teacher)}%0AJenis: ${encodeURIComponent(kind==="work"?"Hasil karya":"Laporan tahunan")}%0AJudul: ${encodeURIComponent(title)}%0ATanggal: ${encodeURIComponent(item.date)}%0A%0AMohon ditinjau. Terima kasih.`;
+  notify("Tersimpan di browser. WhatsApp dibuka untuk notifikasi.");
+  window.open("https://wa.me/"+ADMIN_WA+"?text="+msg,"_blank");
+ }catch(e){notify(e.message);}
+}
+function publish(kind,index){
+ if(role!=="admin"){notify("Khusus admin.");return;}
+ const arr=kind==="Karya"?db.works:db.reports;
+ arr[index].published=arr[index].published===false?true:false;
+ save();renderTabs();notify("Status publikasi diperbarui.");
+}
+function removeItem(kind,index){
+ if(role!=="admin")return;
+ if(!confirm("Hapus unggahan ini?"))return;
+ (kind==="Karya"?db.works:db.reports).splice(index,1);
+ save();renderTabs();notify("Unggahan dihapus.");
+}
+function renameSchools(){
+ if(role!=="admin"){notify("Khusus admin.");return;}
+ modal(`<h2>Nama 20 Sekolah</h2>
+ <p class="muted">Ganti nama contoh dengan nama sekolah anggota sebenarnya.</p>
+ <div style="max-height:55vh;overflow:auto">${schools.map((s,i)=>`
+ <div class="field"><label>Sekolah ${i+1}</label><input id="school${i}" value="${escapeHTML(s.name)}"></div>`).join("")}</div>
+ <div class="modalactions"><button class="light" onclick="closeModal()">Batal</button><button class="dark" onclick="saveNames()">Simpan</button></div>`);
+}
+function saveNames(){
+ schools.forEach((s,i)=>{
+  const value=document.getElementById("school"+i).value.trim();
+  if(value)s.name=value;
+ });
+ try{localStorage.setItem("rumahKaryaSchools",JSON.stringify(schools));}catch(e){}
+ closeModal();renderSchools();
+ document.getElementById("schoolTitle").textContent=schools.find(s=>s.id===current).name;
+ renderTabs();notify("Nama sekolah diperbarui.");
+}
+document.getElementById("year").textContent=new Date().getFullYear();
+save();renderSchools();
+</script>
+</body>
+</html>
